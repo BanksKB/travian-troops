@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="hr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tablica jedinica | Travian</title>
+  <link rel="stylesheet" href="frontend/style.css">
+  <script src="frontend/table.js" defer></script>
+</head>
+<body>
+<main class="wide">
+  <a href="index.html">← O skupu podataka</a>
+  <h1>Vojne jedinice</h1>
+  <form id="filter" class="panel">
+    <label>Brzi filtar
+      <select id="quick-filter">
+        <option value="">All Troops</option>
+        <option value="manual" hidden>Ručni unos</option>
+        <optgroup label="Tip jedinice">
+          <option value="Infantry" data-field="tip_jedinice">Infantry</option>
+          <option value="Cavalry" data-field="tip_jedinice">Cavalry</option>
+        </optgroup>
+        <optgroup label="Pleme">
+          <option value="Romans" data-field="pleme">Roman Troops</option>
+          <option value="Huns" data-field="pleme">Hun Troops</option>
+          <option value="Gauls" data-field="pleme">Gaul Troops</option>
+          <option value="Teutons" data-field="pleme">Teuton Troops</option>
+          <option value="Egyptians" data-field="pleme">Egyptian Troops</option>
+        </optgroup>
+      </select>
+    </label>
+    <label>Traži <input name="q" type="search"></label>
+    <label>Atribut <select name="field"><option value="all">Svi atributi</option></select></label>
+    <button class="primary" type="submit">Filtriraj</button>
+    <button type="reset">Poništi</button>
+  </form>
+  <div class="toolbar">
+    <p id="status" role="status"></p>
+    <nav id="downloads" aria-label="Preuzimanje prikaza" hidden>
+      <a id="csv" class="button">Preuzmi CSV</a>
+      <a id="json" class="button">Preuzmi JSON</a>
+    </nav>
+  </div>
+  <div class="table-scroll" tabindex="0" role="region" aria-label="Tablica statistika vojnih jedinica">
+    <table id="units" aria-label="Statistike vojnih jedinica"><thead><tr></tr></thead><tbody></tbody></table>
+  </div>
+  <section class="panel">
+    <h2>Vrijeme treninga po razini</h2>
+    <p>Svaka nadogradnja skraćuje trening za 10 % u odnosu na prethodnu razinu.</p>
+    <label for="training-building">Zgrada</label>
+    <select id="training-building" disabled></select>
+    <p id="training-status" role="status"></p>
+    <table id="training-levels" hidden>
+      <thead><tr>
+        <th scope="col">Razina</th>
+        <th scope="col">Udio baznog vremena</th>
+        <th scope="col">Smanjenje prema razini 1</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+</main>
+</body>
+</html>

@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict emRcL9zR5R8EPMUk8w6cI19Wgk2aFdBquLQsTEkv1LObvp3RWxdpPKxPdQ7yhZh
+\restrict AEvSLOmQtIcjIC8u5iGKGvtO8bgltzyObfpwOdP9eIpraYXpeu46EfLY8g5TIKM
 
 -- Dumped from database version 18.6
 -- Dumped by pg_dump version 18.6
@@ -24,7 +24,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: plemena; Type: TABLE; Schema: public; Owner: postgres
+-- Name: plemena; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.plemena (
@@ -34,10 +34,8 @@ CREATE TABLE public.plemena (
 );
 
 
-ALTER TABLE public.plemena OWNER TO postgres;
-
 --
--- Name: plemena_id_plemena_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: plemena_id_plemena_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 ALTER TABLE public.plemena ALTER COLUMN id_plemena ADD GENERATED ALWAYS AS IDENTITY (
@@ -51,7 +49,7 @@ ALTER TABLE public.plemena ALTER COLUMN id_plemena ADD GENERATED ALWAYS AS IDENT
 
 
 --
--- Name: vojne_jedinice; Type: TABLE; Schema: public; Owner: postgres
+-- Name: vojne_jedinice; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.vojne_jedinice (
@@ -70,14 +68,12 @@ CREATE TABLE public.vojne_jedinice (
     potrosnja_zita integer NOT NULL,
     vrijeme_treniranja integer,
     tip_jedinice character varying(20) NOT NULL,
-    CONSTRAINT chk_tip_jedinice CHECK (((tip_jedinice)::text = ANY ((ARRAY['Infantry'::character varying, 'Cavalry'::character varying])::text[])))
+    CONSTRAINT chk_tip_jedinice CHECK (((tip_jedinice)::text = ANY (ARRAY[('Infantry'::character varying)::text, ('Cavalry'::character varying)::text])))
 );
 
 
-ALTER TABLE public.vojne_jedinice OWNER TO postgres;
-
 --
--- Name: vojne_jedinice_id_jedinice_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: vojne_jedinice_id_jedinice_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 ALTER TABLE public.vojne_jedinice ALTER COLUMN id_jedinice ADD GENERATED ALWAYS AS IDENTITY (
@@ -91,7 +87,17 @@ ALTER TABLE public.vojne_jedinice ALTER COLUMN id_jedinice ADD GENERATED ALWAYS 
 
 
 --
--- Data for Name: plemena; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Name: zgrade_za_trening; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.zgrade_za_trening (
+    tip_jedinice character varying(20) NOT NULL,
+    naziv character varying(50) NOT NULL
+);
+
+
+--
+-- Data for Name: plemena; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.plemena (id_plemena, naziv, opis) FROM stdin;
@@ -104,7 +110,7 @@ COPY public.plemena (id_plemena, naziv, opis) FROM stdin;
 
 
 --
--- Data for Name: vojne_jedinice; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: vojne_jedinice; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.vojne_jedinice (id_jedinice, id_plemena, naziv, napad, obrana_pjesadija, obrana_konjica, brzina, nosivost, drvo, glina, zeljezo, zito, potrosnja_zita, vrijeme_treniranja, tip_jedinice) FROM stdin;
@@ -122,21 +128,31 @@ COPY public.vojne_jedinice (id_jedinice, id_plemena, naziv, napad, obrana_pjesad
 
 
 --
--- Name: plemena_id_plemena_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Data for Name: zgrade_za_trening; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.zgrade_za_trening (tip_jedinice, naziv) FROM stdin;
+Infantry	Barracks
+Cavalry	Stable
+\.
+
+
+--
+-- Name: plemena_id_plemena_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.plemena_id_plemena_seq', 6, true);
 
 
 --
--- Name: vojne_jedinice_id_jedinice_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: vojne_jedinice_id_jedinice_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.vojne_jedinice_id_jedinice_seq', 10, true);
 
 
 --
--- Name: plemena plemena_naziv_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: plemena plemena_naziv_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.plemena
@@ -144,7 +160,7 @@ ALTER TABLE ONLY public.plemena
 
 
 --
--- Name: plemena plemena_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: plemena plemena_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.plemena
@@ -152,7 +168,7 @@ ALTER TABLE ONLY public.plemena
 
 
 --
--- Name: vojne_jedinice uq_jedinica_pleme; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: vojne_jedinice uq_jedinica_pleme; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.vojne_jedinice
@@ -160,7 +176,7 @@ ALTER TABLE ONLY public.vojne_jedinice
 
 
 --
--- Name: vojne_jedinice vojne_jedinice_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: vojne_jedinice vojne_jedinice_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.vojne_jedinice
@@ -168,7 +184,23 @@ ALTER TABLE ONLY public.vojne_jedinice
 
 
 --
--- Name: vojne_jedinice fk_pleme; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: zgrade_za_trening zgrade_za_trening_naziv_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.zgrade_za_trening
+    ADD CONSTRAINT zgrade_za_trening_naziv_key UNIQUE (naziv);
+
+
+--
+-- Name: zgrade_za_trening zgrade_za_trening_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.zgrade_za_trening
+    ADD CONSTRAINT zgrade_za_trening_pkey PRIMARY KEY (tip_jedinice);
+
+
+--
+-- Name: vojne_jedinice fk_pleme; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.vojne_jedinice
@@ -176,8 +208,37 @@ ALTER TABLE ONLY public.vojne_jedinice
 
 
 --
+-- Name: vojne_jedinice fk_zgrada_za_trening; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.vojne_jedinice
+    ADD CONSTRAINT fk_zgrada_za_trening FOREIGN KEY (tip_jedinice) REFERENCES public.zgrade_za_trening(tip_jedinice);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
-\unrestrict emRcL9zR5R8EPMUk8w6cI19Wgk2aFdBquLQsTEkv1LObvp3RWxdpPKxPdQ7yhZh
+\unrestrict AEvSLOmQtIcjIC8u5iGKGvtO8bgltzyObfpwOdP9eIpraYXpeu46EfLY8g5TIKM
+
+
+-- Razine treninga za Barracks i Stable
+BEGIN;
+
+CREATE TABLE IF NOT EXISTS public.razine_treninga (
+    tip_jedinice varchar(20) NOT NULL REFERENCES public.zgrade_za_trening (tip_jedinice),
+    razina smallint NOT NULL CHECK (razina BETWEEN 1 AND 20),
+    faktor_vremena numeric(20, 19) NOT NULL CHECK (faktor_vremena > 0 AND faktor_vremena <= 1),
+    PRIMARY KEY (tip_jedinice, razina)
+);
+
+INSERT INTO public.razine_treninga (tip_jedinice, razina, faktor_vremena)
+SELECT z.tip_jedinice, r.razina, power(0.9::numeric, r.razina - 1)
+FROM public.zgrade_za_trening z
+CROSS JOIN generate_series(1, 20) AS r(razina)
+WHERE z.tip_jedinice IN ('Infantry', 'Cavalry')
+ON CONFLICT (tip_jedinice, razina) DO UPDATE
+SET faktor_vremena = EXCLUDED.faktor_vremena;
+
+COMMIT;
 

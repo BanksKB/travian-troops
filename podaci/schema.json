@@ -1,0 +1,154 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:travian:vojne-jedinice:schema:2.0",
+  "title": "Travian – vojne jedinice",
+  "description": "Otvoreni skup podataka o odabranim vojnim jedinicama, plemenima i zgradama za trening u igri Travian: Legends.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "title": "Vojna jedinica",
+    "description": "Statistike, troškovi i podaci o treningu jedne vojne jedinice.",
+    "properties": {
+      "pleme": {
+        "title": "Pleme",
+        "description": "Identifikator i engleski naziv plemena jedinice.",
+        "type": "object",
+        "required": [
+          "id_plemena",
+          "naziv"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id_plemena": {
+            "type": "integer",
+            "title": "ID plemena",
+            "description": "Jedinstveni identifikator plemena.",
+            "minimum": 1
+          },
+          "naziv": {
+            "type": "string",
+            "title": "Naziv plemena",
+            "description": "Engleski naziv plemena."
+          }
+        }
+      },
+      "id_jedinice": {
+        "title": "ID jedinice",
+        "description": "Jedinstveni identifikator vojne jedinice u skupu podataka.",
+        "type": "integer",
+        "minimum": 1
+      },
+      "naziv": {
+        "title": "Jedinica",
+        "description": "Engleski naziv vojne jedinice.",
+        "type": "string"
+      },
+      "tip_jedinice": {
+        "title": "Tip jedinice",
+        "description": "Engleska oznaka tipa vojne jedinice.",
+        "type": "string",
+        "enum": [
+          "Infantry",
+          "Cavalry"
+        ]
+      },
+      "zgrada": {
+        "title": "Zgrada",
+        "description": "Engleski naziv zgrade u kojoj se trenira jedinica.",
+        "type": "string",
+        "enum": [
+          "Barracks",
+          "Stable"
+        ]
+      },
+      "napad": {
+        "title": "Napad",
+        "description": "Bodovi napada jedne jedinice.",
+        "type": "integer",
+        "minimum": 0
+      },
+      "obrana_pjesadija": {
+        "title": "Obrana od pješaštva",
+        "description": "Bodovi obrane jedne jedinice protiv pješaštva.",
+        "type": "integer",
+        "minimum": 0
+      },
+      "obrana_konjica": {
+        "title": "Obrana od konjice",
+        "description": "Bodovi obrane jedne jedinice protiv konjice.",
+        "type": "integer",
+        "minimum": 0
+      },
+      "brzina": {
+        "title": "Brzina (polja/h)",
+        "description": "Brzina kretanja jedinice u poljima na sat.",
+        "type": "integer",
+        "minimum": 0
+      },
+      "nosivost": {
+        "title": "Nosivost",
+        "description": "Broj jedinica resursa koje vojna jedinica može nositi.",
+        "type": "integer",
+        "minimum": 0
+      },
+      "drvo": {
+        "title": "Drvo",
+        "description": "Količina drva potrebna za trening jedne jedinice.",
+        "type": "integer",
+        "minimum": 0
+      },
+      "glina": {
+        "title": "Glina",
+        "description": "Količina gline potrebna za trening jedne jedinice.",
+        "type": "integer",
+        "minimum": 0
+      },
+      "zeljezo": {
+        "title": "Željezo",
+        "description": "Količina željeza potrebna za trening jedne jedinice.",
+        "type": "integer",
+        "minimum": 0
+      },
+      "zito": {
+        "title": "Žito",
+        "description": "Količina žita potrebna za trening jedne jedinice.",
+        "type": "integer",
+        "minimum": 0
+      },
+      "potrosnja_zita": {
+        "title": "Potrošnja žita (po satu)",
+        "description": "Količina žita potrebna za održavanje jedne jedinice po satu.",
+        "type": "integer",
+        "minimum": 0
+      },
+      "vrijeme_treniranja": {
+        "title": "Vrijeme treninga (s)",
+        "description": "Izvorno vrijeme treninga u sekundama iz skupa prve vježbe.",
+        "type": [
+          "integer",
+          "null"
+        ],
+        "minimum": 0
+      }
+    },
+    "required": [
+      "pleme",
+      "id_jedinice",
+      "naziv",
+      "tip_jedinice",
+      "zgrada",
+      "napad",
+      "obrana_pjesadija",
+      "obrana_konjica",
+      "brzina",
+      "nosivost",
+      "drvo",
+      "glina",
+      "zeljezo",
+      "zito",
+      "potrosnja_zita",
+      "vrijeme_treniranja"
+    ],
+    "additionalProperties": false
+  }
+}

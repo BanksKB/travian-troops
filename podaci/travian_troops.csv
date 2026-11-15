@@ -1,0 +1,11 @@
+naziv,pleme,zgrada,tip_jedinice,napad,obrana_pjesadija,obrana_konjica,brzina,nosivost,drvo,glina,zeljezo,zito,potrosnja_zita,vrijeme_treniranja,id_jedinice,id_plemena
+Equites Imperatoris,Romans,Stable,Cavalry,120,65,50,14,100,550,440,320,100,3,2640,1,1
+Legionnaire,Romans,Barracks,Infantry,40,35,50,6,50,120,100,150,30,1,1600,2,1
+Teutonic Knight,Teutons,Stable,Cavalry,150,50,75,9,80,450,515,480,80,3,2960,3,2
+Clubswinger,Teutons,Barracks,Infantry,40,20,5,7,60,95,75,40,40,1,720,4,2
+Theutates Thunder,Gauls,Stable,Cavalry,100,25,40,19,75,350,450,230,60,2,2480,5,3
+Phalanx,Gauls,Barracks,Infantry,15,40,50,7,35,100,130,55,30,1,1040,6,3
+Anhur Guard,Egyptians,Stable,Cavalry,50,110,50,15,50,360,330,280,120,2,2560,7,4
+Slave Militia,Egyptians,Barracks,Infantry,10,30,20,7,15,45,60,30,15,1,530,8,4
+Steppe Rider,Huns,Stable,Cavalry,120,30,15,16,75,290,370,190,45,2,2400,9,5
+Mercenary,Huns,Barracks,Infantry,35,40,30,6,50,130,80,40,40,1,810,10,5
